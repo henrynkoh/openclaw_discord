@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { CaseStudyCards } from "@/components/caseStudy/CaseStudyCards";
 import { CHANNELS } from "@/data/channels";
+import { getCaseStudies } from "@/data/caseStudies";
 import { getPrompts } from "@/data/prompts";
 import { SKILLS } from "@/data/skillCatalog";
 import { GITHUB_REPO_URL } from "@/lib/site";
@@ -17,6 +19,7 @@ const SECTIONS = [
   { id: "lifecycle", label: "Lifecycle", nav: "Lifecycle" },
   { id: "skills", label: "100 skills", nav: "100 skills" },
   { id: "prompts", label: "Prompt engine", nav: "Prompts" },
+  { id: "case-studies", label: "Case studies", nav: "Case studies" },
   { id: "playbook", label: "Interactive app", nav: "Playbook" },
   { id: "docs", label: "Docs & repo", nav: "Docs" },
 ] as const;
@@ -31,6 +34,15 @@ const CHANNEL_COLORS: Record<string, string> = {
   imessage: "from-fuchsia-500 to-pink-400",
   webchat: "from-rose-500 to-red-400",
 };
+
+const TELEGRAM_EXEC_ADV_PROMPTS = getPrompts("telegram", "execution", "advanced");
+const TELEGRAM_EXEC_ADV_CASES = getCaseStudies(
+  "telegram",
+  "execution",
+  "advanced",
+  TELEGRAM_EXEC_ADV_PROMPTS,
+  "Telegram",
+);
 
 export function LandingPage() {
   const [active, setActive] = useState<string>("hero");
@@ -233,6 +245,12 @@ export function LandingPage() {
                 desc="Quickstart, tutorial, manual, and marketing copy in /docs—clone and adapt."
                 gradient="from-teal-500/20 to-emerald-500/10"
               />
+              <FeatureCard
+                icon="📋"
+                title="Case studies per prompt"
+                desc="Each of the 10 prompts has a scenario, how-to-apply steps, and a success check—exemplar: Telegram · Execution · Advanced."
+                gradient="from-violet-500/20 to-fuchsia-500/10"
+              />
             </div>
           </div>
         </section>
@@ -317,6 +335,29 @@ export function LandingPage() {
               Live copy from the same engine as the playbook—Telegram · Execution · Intermediate:
             </p>
             <PromptPreview />
+          </div>
+        </section>
+
+        <section id="case-studies" className="scroll-mt-20 border-t border-white/10 px-4 py-20 sm:px-8">
+          <div className="mx-auto max-w-5xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/40 bg-violet-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-violet-800 dark:text-violet-200">
+              Exemplar track
+            </div>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Case studies for the top 10 prompts</h2>
+            <p className="mt-3 max-w-3xl text-lg text-zinc-600 dark:text-zinc-400">
+              Below is the full <strong className="text-zinc-900 dark:text-zinc-100">Telegram · Execution · Advanced</strong>{" "}
+              set. Each card matches <strong>one</strong> prompt: first{" "}
+              <strong className="text-zinc-900 dark:text-zinc-100">step-by-step</strong> instructions you can do on the Mac,
+              then scenario, LLM guidance, and a success check. In the{" "}
+              <Link href="/playbook" className="font-semibold text-emerald-700 underline underline-offset-2 dark:text-emerald-400">
+                playbook
+              </Link>
+              , choose <strong className="text-zinc-900 dark:text-zinc-100">Discord · Preplan · Basic</strong> for the same
+              style of practical steps aligned with your screenshot workflow.
+            </p>
+            <div className="mt-10 rounded-3xl border border-violet-200/60 bg-white/70 p-4 shadow-xl backdrop-blur dark:border-violet-900/40 dark:bg-zinc-900/60 sm:p-6">
+              <CaseStudyCards items={TELEGRAM_EXEC_ADV_CASES} />
+            </div>
           </div>
         </section>
 

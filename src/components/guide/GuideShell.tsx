@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { AudienceLevel, ChannelId, LifecycleStage, Skill } from "@/lib/types";
+import { CaseStudyCards } from "@/components/caseStudy/CaseStudyCards";
 import { CHANNELS } from "@/data/channels";
+import { getCaseStudies } from "@/data/caseStudies";
 import { getPrompts } from "@/data/prompts";
 import { SKILLS } from "@/data/skillCatalog";
 import { CopyButton } from "./CopyButton";
@@ -46,6 +48,10 @@ export function GuideShell() {
   const prompts = useMemo(
     () => getPrompts(channel, promptStage, audience),
     [channel, promptStage, audience],
+  );
+  const caseStudies = useMemo(
+    () => getCaseStudies(channel, promptStage, audience, prompts, channelMeta.label),
+    [channel, promptStage, audience, prompts, channelMeta.label],
   );
 
   const subjectLine = useMemo(() => {
@@ -166,6 +172,20 @@ export function GuideShell() {
               </li>
             ))}
           </ol>
+
+          <div className="mt-4 max-h-[min(32rem,70vh)] overflow-y-auto rounded-xl border border-violet-200/80 bg-gradient-to-b from-violet-50/90 to-white/80 p-3 dark:border-violet-900/50 dark:from-violet-950/40 dark:to-zinc-950/80">
+            <p className="sticky top-0 z-[1] mb-2 border-b border-violet-200/60 bg-gradient-to-b from-violet-50/95 to-transparent pb-2 text-xs font-bold uppercase tracking-wide text-violet-800 backdrop-blur-sm dark:border-violet-800/60 dark:from-zinc-950/95 dark:text-violet-200">
+              Case studies — how each prompt applies (1:1 with the list above)
+            </p>
+            <p className="mb-3 text-[11px] leading-snug text-zinc-600 dark:text-zinc-400">
+              Each card starts with <strong className="text-zinc-800 dark:text-zinc-200">Step-by-step (do in order)</strong>{" "}
+              for real Mac actions, then scenario and LLM tips. Deep tracks:{" "}
+              <strong className="text-zinc-800 dark:text-zinc-200">Discord · Preplan · Basic</strong> and{" "}
+              <strong className="text-zinc-800 dark:text-zinc-200">Telegram · Execution · Advanced</strong>. Other combos
+              use the same layout with template steps—switch Channel / Stage / Audience above to match your screen.
+            </p>
+            <CaseStudyCards items={caseStudies} compact />
+          </div>
         </div>
       </header>
 

@@ -53,6 +53,8 @@ This overwrites `src/data/skillCatalog.ts`.
 - `src/components/guide/` — Interactive playbook UI (sidebar, prompts, skill detail)
 - `src/data/skillCatalog.ts` — 100 skills
 - `src/data/prompts.ts` — `getPrompts(channel, stage, audience)`
+- `src/data/caseStudies.ts` — `getCaseStudies(...)` (1:1 with prompts; exemplar narratives for Telegram · Execution · Advanced)
+- `src/components/caseStudy/CaseStudyCards.tsx` — expandable case study cards
 - `src/data/channels.ts` — SNS metadata
 
 ## Security note

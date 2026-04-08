@@ -63,7 +63,18 @@ This is the **prompt pack** stage, not necessarily the same as the skill you sel
 - **Intermediate** — CLI, config shapes, runbooks.
 - **Advanced** — threat modeling, SLOs, chaos, compliance-style questions.
 
-### 4. Copy prompts
+### 4. Case studies (below the prompt list)
+
+Under the **Top 10 copy-pastable prompts** block, open **Case studies — how each prompt applies**. Each numbered card lines up with the prompt above it. Expand a card to see:
+
+1. **Step-by-step (do in order)** — plain actions on your Mac (files, Settings, Terminal commands without secrets).
+2. **Scenario** — why this prompt matters.
+3. **How to use this prompt (with your LLM)** — how to use the copy-pastable line with an assistant.
+4. **Success check** — how you know you are done.
+
+Full practical steps are written for **Discord · Preplan · Basic** and **Telegram · Execution · Advanced**; every other combination uses the same layout with template steps you can still follow.
+
+### 5. Copy prompts
 
 Each pack has **exactly 10** prompts. Click **Copy** and paste into:
 
@@ -96,7 +107,11 @@ Each pack has **exactly 10** prompts. Click **Copy** and paste into:
 
 ---
 
-## Part D — Regenerating skill data (developers)
+## Part D — Case studies on the landing page (`/`)
+
+The **Case studies** section showcases the same **Telegram · Execution · Advanced** track end-to-end for readers who want the story before opening the playbook.
+
+## Part E — Regenerating skill data (developers)
 
 If you change `scripts/generate-skills.mjs`:
 

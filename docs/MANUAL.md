@@ -8,6 +8,7 @@ The app is a **static, client-heavy guide**:
 
 - **Skills** (`src/data/skillCatalog.ts`) — 100 items with lifecycle stage, subcategory, audience tags, steps, checklist, references.
 - **Prompts** (`src/data/prompts.ts`) — function `getPrompts(channel, stage, audience)` returns **10** strings per combination.
+- **Case studies** (`src/data/caseStudies.ts`) — `getCaseStudies(...)` returns **10** items aligned with prompts. Each item includes **`practicalSteps`** (ordered Mac actions), scenario, LLM `howToApply`, and `successCheck`. Hand-authored tracks: **Discord · Preplan · Basic** and **Telegram · Execution · Advanced**; other combos use template `practicalSteps`.
 - **Channels** (`src/data/channels.ts`) — labels and doc hints for each SNS surface.
 
 No backend database; no user accounts.
